@@ -2,10 +2,10 @@ import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import HelmetMaker from "../../utils/HelmetMaker/HelmetMaker";
 
-const Root = () => {
+const AllCoffee = () => {
     return (
         <div>
-            <HelmetMaker title='Cafe Terrace || Home'/>
+            <HelmetMaker title='Cafe Terrace || All Coffee'/>
             <Navbar/>
 
 
@@ -14,4 +14,4 @@ const Root = () => {
     );
 };
 
-export default Root;
+export default AllCoffee;
