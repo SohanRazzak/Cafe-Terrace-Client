@@ -1,10 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import HelmetMaker from "../../utils/HelmetMaker/HelmetMaker";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Footer from "../../components/Footer/Footer";
-const AddCoffee = () => {
+
+const UpdateCoffee = () => {
+    const currentCoffee = useLoaderData();
+
+    const {
+        coffeeName,
+        photo,
+        chef,
+        price,
+        taste,
+        category,
+        details,
+        supplier,
+        _id
+    } = currentCoffee;
     const handleAddCoffee = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -19,8 +33,8 @@ const AddCoffee = () => {
             price: form.price.value,
         };
 
-        fetch("http://localhost:5000/coffees", {
-            method: "POST",
+        fetch(`http://localhost:5000/coffee/update/${_id}`, {
+            method: "PUT",
             headers: {
                 "content-type": "application/json",
             },
@@ -28,20 +42,19 @@ const AddCoffee = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                if (data.insertedId) {
+                if (data.modifiedCount>0) {
                     Swal.fire({
                         title: "Success!",
-                        text: "Coffee Added Successfully!",
+                        text: "Coffee Updated Successfully!",
                         icon: "success",
-                        confirmButtonText: "Close"
+                        confirmButtonText: "Close",
                     });
-                    form.reset();
                 }
             });
     };
     return (
         <div>
-            <HelmetMaker title="Cafe Terrace || Add New Coffee" />
+            <HelmetMaker title="Cafe Terrace || Update Existing Coffee" />
             <Navbar />
             <Link to="/">
                 <div className="flex gap-4 items-center text-2xl px-4 py-3 m-3 max-w-fit rounded-md hover:bg-amber-400">
@@ -52,7 +65,7 @@ const AddCoffee = () => {
 
             <div className="max-w-7xl mx-auto bg-gray-100 py-10 mb-10 rounded-md">
                 <p className="font-mono text-4xl font-semibold text-center mb-5 px-3">
-                    Add New Coffee
+                    Update Existing Coffee
                 </p>
                 <form
                     onSubmit={handleAddCoffee}
@@ -68,6 +81,7 @@ const AddCoffee = () => {
                         <input
                             type="text"
                             placeholder="Enter coffee name"
+                            defaultValue={coffeeName}
                             className="input input-bordered w-full"
                             name="coffeeName"
                             required
@@ -83,6 +97,7 @@ const AddCoffee = () => {
                         <input
                             type="text"
                             placeholder="Enter chef name"
+                            defaultValue={chef}
                             className="input input-bordered w-full"
                             name="chef"
                         />
@@ -97,6 +112,7 @@ const AddCoffee = () => {
                         <input
                             type="text"
                             placeholder="Enter supplier name"
+                            defaultValue={supplier}
                             className="input input-bordered w-full"
                             name="supplier"
                         />
@@ -111,6 +127,7 @@ const AddCoffee = () => {
                         <input
                             type="text"
                             placeholder="ie: Bitter, Sweet etc."
+                            defaultValue={taste}
                             className="input input-bordered w-full"
                             name="taste"
                         />
@@ -125,6 +142,7 @@ const AddCoffee = () => {
                         <input
                             type="text"
                             placeholder="Enter coffee category"
+                            defaultValue={category}
                             className="input input-bordered w-full"
                             name="category"
                         />
@@ -139,6 +157,7 @@ const AddCoffee = () => {
                         <input
                             type="text"
                             placeholder="Enter coffee name"
+                            defaultValue={details}
                             className="input input-bordered w-full"
                             name="details"
                         />
@@ -153,6 +172,7 @@ const AddCoffee = () => {
                         <input
                             type="text"
                             placeholder="Enter Coffee Image Link"
+                            defaultValue={photo}
                             className="input input-bordered w-full"
                             name="photo"
                             required
@@ -168,6 +188,7 @@ const AddCoffee = () => {
                         <input
                             type="text"
                             placeholder="Enter Coffee Image Link"
+                            defaultValue={price}
                             className="input input-bordered w-full"
                             name="price"
                             required
@@ -177,7 +198,7 @@ const AddCoffee = () => {
                         type="submit"
                         className="md:col-span-2 mx-auto btn btn-success text-white mt-2"
                     >
-                        Add This Coffee To List
+                        Update This Coffee
                     </button>
                 </form>
             </div>
@@ -187,4 +208,4 @@ const AddCoffee = () => {
     );
 };
 
-export default AddCoffee;
+export default UpdateCoffee;

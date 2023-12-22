@@ -3,8 +3,11 @@ import {PropTypes} from 'prop-types';
 
 export const AllContext =createContext()
 const GlobalContext = ({children}) => {
+    
 
-    const globalContext = {user: true}
+    const globalContext = {
+        user: true
+    }
 
     return (
         <AllContext.Provider value={globalContext}>

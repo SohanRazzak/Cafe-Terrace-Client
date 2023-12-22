@@ -1,0 +1,5 @@
+.popular-bg {
+    background: url('../../assets/more/4.png') no-repeat top left,
+    url('../../assets/more/5.png') no-repeat right bottom;
+    background-size: 220px, 300px;
+}

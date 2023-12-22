@@ -15,7 +15,7 @@ const Footer = () => {
             message : form.message.value
         }
         
-        fetch('http://localhost:5000/message',{
+        fetch('http://localhost:5000/messages',{
             method : 'POST',
             headers : {
                 "content-type" : "application/json"
@@ -33,6 +33,7 @@ const Footer = () => {
                     icon : "success",
                     showConfirmButton : false
                 })
+                form.reset();
             }
         })
     }
@@ -43,7 +44,7 @@ const Footer = () => {
                     <p className='flex items-center justify-center gap-4'> 
                         <img src={logoIcon} alt="Cafe Terrace" 
                         className='w-12 h-12'/>
-                        <p className='text-3xl font-mono font-bold underline'>Cafe Terrace</p>
+                        <span className='text-3xl font-mono font-bold underline'>Cafe Terrace</span>
                     </p>
                     <p className='max-w-sm tracking-wide font-medium text-base'>Enjoy your coffee with most authentic taste. Always ready to be your friend. Come & Contact with us to share your memorable moments, to share with your best companion.</p>
                     <div className="grid grid-flow-col gap-4">
@@ -88,16 +89,20 @@ const Footer = () => {
 
                 </aside>
                 <aside>
+                <header className="footer-title mt-3">Connect With Us</header>
                     <form onSubmit={handleContact}>
                     <input type="text" placeholder="Name" className="input input-bordered w-full mb-3" name='senderName' required/>
                     <input type="text" placeholder="Email" className="input input-bordered w-full mb-3" name='email' required/>
-                    <input type="text" placeholder="Message" className="input input-bordered h-24 w-full" name='message' required/>
+                    <textarea type="text" placeholder="Message" className="input input-bordered h-24 w-full py-2" name='message' required/>
                     <button className='btn btn-outline rounded-full text-cyan-600 hover:bg-teal-700 font-bold mt-3'>
                         Send Message
                     </button>
                     </form>
                 </aside>
             </footer>
+            <div className='py-3 px-4 text-center font-mono font-medium text-white bg-coffee-bean'>
+            &copy; Copyright Cafe Terrace ! All Rights Reserved
+            </div>
         </>
     );
 };
