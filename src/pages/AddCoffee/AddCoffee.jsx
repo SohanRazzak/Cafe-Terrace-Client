@@ -4,7 +4,12 @@ import HelmetMaker from "../../utils/HelmetMaker/HelmetMaker";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Footer from "../../components/Footer/Footer";
+import { useEffect } from "react";
 const AddCoffee = () => {
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
+
     const handleAddCoffee = (e) => {
         e.preventDefault();
         const form = e.target;

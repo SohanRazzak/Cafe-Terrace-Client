@@ -4,8 +4,13 @@ import HelmetMaker from "../../utils/HelmetMaker/HelmetMaker";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Footer from "../../components/Footer/Footer";
+import { useEffect } from "react";
 
 const UpdateCoffee = () => {
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
+
     const currentCoffee = useLoaderData();
 
     const {
