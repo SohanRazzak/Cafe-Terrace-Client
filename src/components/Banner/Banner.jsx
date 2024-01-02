@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, A11y } from "swiper/modules";
-import bg_1 from "../../../public/images/more/3.png";
-import bg_2 from "../../../public/images/more/17.jpg";
+import { Navigation, Pagination } from "swiper/modules";
+import bg_1 from "../../../src/assets/more/3.png";
+import bg_2 from "../../../src/assets/more/17.jpg";
 
 // Import Swiper styles
 import "swiper/css";
@@ -13,14 +13,11 @@ const Banner = () => {
         <div>
             <Swiper
                 // install Swiper modules
-                modules={[Navigation, Pagination, A11y]}
+                modules={[Navigation, Pagination]}
                 spaceBetween={50}
                 slidesPerView={1}
                 navigation
-                pagination={{ clickable: true }}
-                scrollbar={{ draggable: true }}
-                onSwiper={(swiper) => console.log(swiper)}
-                onSlideChange={() => console.log("slide change")}
+                pagination={{ clickable : true}}
             >
                 <SwiperSlide>
                     <div

@@ -1,24 +1,26 @@
 import { PropTypes } from "prop-types";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import TiltComponent from "../Tilt/Tilt";
 
-const CoffeeCard = ({ coffee, coffees }) => {
+const CoffeeCard = ({ coffee, coffees, role }) => {
     const { coffeeName, photo, chef, price, _id } = coffee;
     const [allCoffee, setCoffees] = coffees;
+    const navigate = useNavigate();
 
     const handleDelete = (id) => {
         Swal.fire({
-            confirmButtonText : "DELETE",
-            denyButtonText : 'DISMISS',
-            title : "Are You Sure?",
-            text : "This action can not be reverted!",
-            icon : 'warning',
-            showDenyButton : true
+            confirmButtonText: "DELETE",
+            denyButtonText: "DISMISS",
+            title: "Are You Sure?",
+            text: "This action can not be reverted!",
+            icon: "warning",
+            showDenyButton: true,
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`http://localhost:5000/coffee/delete/${id}`, {
-                    method: "DELETE"
+                    method: "DELETE",
                 })
                     .then((res) => res.json())
                     .then((data) => {
@@ -27,24 +29,26 @@ const CoffeeCard = ({ coffee, coffees }) => {
                                 title: "Coffee Deleted Successfully",
                                 confirmButtonText: "Close",
                             });
-                            const remainingCoffee = allCoffee.filter(c=> c._id !== id)
+                            const remainingCoffee = allCoffee.filter(
+                                (c) => c._id !== id
+                            );
                             setCoffees(remainingCoffee);
                         }
                     });
-            }
-            else if (result.isDenied) {
+            } else if (result.isDenied) {
                 Swal.fire({
-                    title : 'Removal Dismissed!',
-                    icon : "info",
-                    showConfirmButton : false,
-                    timer : 2000,
-                    timerProgressBar : true
+                    title: "Removal Dismissed!",
+                    icon: "info",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
                 });
             }
         });
     };
     return (
-        <div className="m-2 card items-center card-side bg-gray-200 bg-opacity-60 shadow-xl">
+        <TiltComponent>
+            <div onClick={role === "user" ? ()=> navigate(`/coffee/${_id}`) : null} className="m-2 card items-center card-side bg-gray-200 bg-opacity-60 shadow-xl">
             <figure>
                 <img
                     src={photo}
@@ -63,33 +67,38 @@ const CoffeeCard = ({ coffee, coffees }) => {
                     <span className="font-semibold">Price</span> : {price} $
                 </p>
             </div>
-            <div className="mr-5">
-                <div className="flex flex-col gap-2">
-                    <Link to={`/coffee/${_id}`}>
-                        <button className="btn btn-primary join-item text-white">
-                            <FaEye />
+
+            {role === "admin" ? (
+                <div className="mr-5 z-30">
+                    <div className="flex flex-col gap-2">
+                        <Link to={`/coffee/${_id}`}>
+                            <button className="btn btn-primary join-item text-white">
+                                <FaEye />
+                            </button>
+                        </Link>
+                        <Link to={`/coffee/update/${_id}`}>
+                            <button className="btn btn-neutral join-item text-white">
+                                <FaEdit />
+                            </button>
+                        </Link>
+                        <button
+                            onClick={() => handleDelete(_id)}
+                            className="btn btn-error join-item text-white"
+                        >
+                            <FaTrash />
                         </button>
-                    </Link>
-                    <Link to={`/coffee/update/${_id}`}>
-                        <button className="btn btn-neutral join-item text-white">
-                            <FaEdit />
-                        </button>
-                    </Link>
-                    <button
-                        onClick={() => handleDelete(_id)}
-                        className="btn btn-error join-item text-white"
-                    >
-                        <FaTrash />
-                    </button>
+                    </div>
                 </div>
-            </div>
+            ) : null}
         </div>
+        </TiltComponent>
     );
 };
 
 CoffeeCard.propTypes = {
     coffee: PropTypes.object,
-    coffees : PropTypes.array
+    coffees: PropTypes.array,
+    role: PropTypes.string,
 };
 
 export default CoffeeCard;

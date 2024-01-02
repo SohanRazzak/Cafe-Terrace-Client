@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import HelmetMaker from "../../utils/HelmetMaker/HelmetMaker";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import { useEffect } from "react";
 
 const CoffeeDetails = () => {
     const coffee = useLoaderData();
@@ -15,6 +16,10 @@ const CoffeeDetails = () => {
         details,
         supplier,
     } = coffee;
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
 
     return (
         <div>
@@ -32,7 +37,7 @@ const CoffeeDetails = () => {
                     <img
                         src={photo}
                         alt={coffeeName}
-                        className="w-64 mx-auto"
+                        className="h-72 mx-auto"
                     />
                 </div>
                 <div className="px-8 md:p-5 space-y-2 md:max-w-md">
