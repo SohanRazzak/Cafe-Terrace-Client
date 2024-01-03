@@ -30,12 +30,12 @@ const router = createBrowserRouter([
         <PrivateRoute>
                 <UpdateCoffee />
             </PrivateRoute>,
-        loader : ({params})=> fetch(`http://localhost:5000/coffee/${params.id}`)
+        loader : ({params})=> fetch(`https://cafe-server-zuzm.onrender.com/coffee/${params.id}`)
     },
     {
         path: "/coffee/:id",
         element: <CoffeeDetails />,
-        loader : ({params})=> fetch(`http://localhost:5000/coffee/${params.id}`)
+        loader : ({params})=> fetch(`https://cafe-server-zuzm.onrender.com/coffee/${params.id}`)
     },
     {
         path : "/SignUp",

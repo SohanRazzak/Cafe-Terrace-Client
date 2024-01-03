@@ -26,7 +26,7 @@ const SignIn = () => {
                 email,
                 lastLoggeddAt
             }
-            fetch("http://localhost:5000/users",
+            fetch("https://cafe-server-zuzm.onrender.com/users",
                 {
                     method : "PATCH",
                     headers : {
@@ -75,7 +75,7 @@ const SignIn = () => {
                         verified: res.user.emailVerified,
                         role: "user",
                     };
-                    fetch("http://localhost:5000/users", {
+                    fetch("https://cafe-server-zuzm.onrender.com/users", {
                         method: "PUT",
                         headers: {
                             "content-type": "application/json",

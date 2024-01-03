@@ -38,7 +38,7 @@ const SignUp = () => {
                     uid : res.user.uid,
                     role: "user",
                 };
-                fetch("http://localhost:5000/users", {
+                fetch("https://cafe-server-zuzm.onrender.com/users", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -77,7 +77,7 @@ const SignUp = () => {
                         uid : res.user.uid,
                         role: "user",
                     };
-                    fetch("http://localhost:5000/users", {
+                    fetch("https://cafe-server-zuzm.onrender.com/users", {
                         method: "PUT",
                         headers: {
                             "content-type": "application/json",

@@ -30,7 +30,7 @@ const GlobalContext = ({children}) => {
             user ? setUser(user) : setUser(null);
             setLoading(false);
             if(user){
-            fetch(`http://localhost:5000/user/${user.uid}`)
+            fetch(`https://cafe-server-zuzm.onrender.com/user/${user.uid}`)
             .then(res => res.json())
             .then(data => setRole(data.role))
             }

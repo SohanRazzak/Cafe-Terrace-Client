@@ -19,7 +19,7 @@ const CoffeeCard = ({ coffee, coffees, role }) => {
             showDenyButton: true,
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/coffee/delete/${id}`, {
+                fetch(`https://cafe-server-zuzm.onrender.com/coffee/delete/${id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())

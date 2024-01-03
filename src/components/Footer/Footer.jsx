@@ -15,7 +15,7 @@ const Footer = () => {
             message : form.message.value
         }
         
-        fetch('http://localhost:5000/messages',{
+        fetch('https://cafe-server-zuzm.onrender.com/messages',{
             method : 'POST',
             headers : {
                 "content-type" : "application/json"

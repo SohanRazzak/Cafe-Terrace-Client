@@ -24,7 +24,7 @@ const AddCoffee = () => {
             price: form.price.value,
         };
 
-        fetch("http://localhost:5000/coffees", {
+        fetch("https://cafe-server-zuzm.onrender.com/coffees", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

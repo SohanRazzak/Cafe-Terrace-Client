@@ -9,7 +9,7 @@ const PopularCoffees = () => {
     const [coffees, setCoffees] = useState([]);
     const {role} = useContext(AllContext);
     useEffect(() => {
-        fetch("http://localhost:5000/coffees")
+        fetch("https://cafe-server-zuzm.onrender.com/coffees")
             .then((res) => res.json())
             .then((data) => setCoffees(data));
     }, []);

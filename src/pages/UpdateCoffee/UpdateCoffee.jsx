@@ -38,7 +38,7 @@ const UpdateCoffee = () => {
             price: form.price.value,
         };
 
-        fetch(`http://localhost:5000/coffee/update/${_id}`, {
+        fetch(`https://cafe-server-zuzm.onrender.com/coffee/update/${_id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
